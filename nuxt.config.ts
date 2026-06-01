@@ -1,4 +1,4 @@
-const siteUrl = 'https://u232c.github.io/myweb'
+const siteUrl = 'https://u232c.github.io'
 
 export default defineNuxtConfig({
   compatibilityDate: '2026-06-01',
@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     name: 'U232C Blog'
   },
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/myweb/',
+    baseURL: process.env.NUXT_APP_BASE_URL || '/',
     head: {
       htmlAttrs: { lang: 'zh-CN' },
       link: [
@@ -73,7 +73,7 @@ export default defineNuxtConfig({
     public: {
       siteUrl,
       giscus: {
-        repo: 'U232C/myweb',
+        repo: 'U232C/U232C.github.io',
         repoId: '',
         category: 'General',
         categoryId: '',

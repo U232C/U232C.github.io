@@ -3,7 +3,7 @@ export default defineAppConfig({
     name: 'U232C Blog',
     author: 'U232C',
     description: '一个用 Nuxt 3、Markdown 和工程师审美构建的个人博客。',
-    url: 'https://u232c.github.io/myweb',
+    url: 'https://u232c.github.io',
     nav: [
       { label: '首页', to: '/' },
       { label: '文章', to: '/archive' },
