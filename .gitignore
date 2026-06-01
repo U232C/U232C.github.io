@@ -8,8 +8,10 @@ build/
 out/
 .next/
 .nuxt/
+.output/
 .svelte-kit/
 coverage/
+.data/
 
 # Python
 __pycache__/
@@ -23,7 +25,9 @@ env/
 
 # Logs and runtime files
 *.log
+.nuxt-dev.*.log
 logs/
+tmp/
 *.pid
 *.seed
 

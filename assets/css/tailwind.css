@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --accent: 20 184 166;
+  --accent-strong: 13 148 136;
+  --bg: 248 250 252;
+  --panel: 255 255 255;
+  --panel-muted: 241 245 249;
+  --text: 15 23 42;
+  --muted: 71 85 105;
+  --border: 203 213 225;
+  --font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: 9 12 18;
+  --panel: 17 24 39;
+  --panel-muted: 30 41 59;
+  --text: 226 232 240;
+  --muted: 148 163 184;
+  --border: 51 65 85;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background: rgb(var(--bg));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% -10%, rgb(var(--accent) / 0.12), transparent 34rem),
+    linear-gradient(135deg, rgb(var(--bg)), rgb(var(--panel-muted)));
+  color: rgb(var(--text));
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  .surface {
+    border: 1px solid rgb(var(--border) / 0.72);
+    background: rgb(var(--panel) / 0.82);
+    box-shadow: 0 18px 60px rgb(15 23 42 / 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  .focus-ring {
+    @apply outline-none ring-offset-2 ring-offset-transparent focus-visible:ring-2;
+    --tw-ring-color: rgb(var(--accent));
+  }
+
+  .text-muted {
+    color: rgb(var(--muted));
+  }
+
+  .accent-text {
+    color: rgb(var(--accent));
+  }
+
+  .accent-bg {
+    background: rgb(var(--accent));
+  }
+
+  .page-enter-active,
+  .page-leave-active,
+  .layout-enter-active,
+  .layout-leave-active {
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .page-enter-from,
+  .page-leave-to,
+  .layout-enter-from,
+  .layout-leave-to {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@layer utilities {
+  .content-prose {
+    @apply max-w-none text-[0.98rem] leading-8;
+  }
+
+  .content-prose :where(h2, h3, h4) {
+    @apply scroll-mt-28 font-bold tracking-normal;
+  }
+
+  .content-prose h2 {
+    @apply mt-12 border-t pt-8 text-2xl;
+    border-color: rgb(var(--border) / 0.72);
+  }
+
+  .content-prose h3 {
+    @apply mt-9 text-xl;
+  }
+
+  .content-prose p,
+  .content-prose ul,
+  .content-prose ol,
+  .content-prose blockquote {
+    @apply my-5;
+  }
+
+  .content-prose a {
+    color: rgb(var(--accent));
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .content-prose blockquote {
+    @apply rounded-md border-l-4 px-5 py-1;
+    border-color: rgb(var(--accent));
+    background: rgb(var(--accent) / 0.08);
+  }
+
+  .content-prose code:not(pre code) {
+    @apply rounded px-1.5 py-0.5 text-sm;
+    background: rgb(var(--panel-muted));
+  }
+
+  .content-prose table {
+    @apply my-6 w-full border-collapse text-sm;
+  }
+
+  .content-prose th,
+  .content-prose td {
+    @apply border px-3 py-2 text-left;
+    border-color: rgb(var(--border));
+  }
+}
