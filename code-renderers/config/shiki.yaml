@@ -1,0 +1,25 @@
+label: Shiki
+mode: static
+enabled: true
+fallbackLanguage: text
+highlight:
+  languages:
+    - vue
+    - ts
+    - js
+    - html
+    - css
+    - md
+    - json
+    - bash
+    - powershell
+    - yaml
+  themes:
+    default: github-light
+    dark: github-dark
+presentation:
+  source: expanded
+styles: []
+legacyLanguages: []
+defaults: {}
+options: {}

@@ -1,0 +1,37 @@
+label: JSXGraph
+mode: interactive
+enabled: true
+adapter: jsxgraph
+executable: true
+syntax: javascript
+acceptedLanguages:
+  - js
+highlightLanguage: js
+presentation:
+  source: collapsed
+styles:
+  - ../../node_modules/jsxgraph/distrib/jsxgraph.css
+legacyLanguages:
+  - jsxgraph
+defaults:
+  height: 420
+  bbox: [-5, 5, 5, -5]
+  axis: true
+  grid: false
+options:
+  height:
+    type: number
+    min: 240
+    max: 800
+    overridable: true
+  bbox:
+    type: number-list
+    length: 4
+    validate: bounding-box
+    overridable: true
+  axis:
+    type: boolean
+    overridable: true
+  grid:
+    type: boolean
+    overridable: true

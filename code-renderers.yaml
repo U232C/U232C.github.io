@@ -1,0 +1,6 @@
+defaultRenderer: shiki
+renderers:
+  - id: shiki
+    config: ./code-renderers/config/shiki.yaml
+  - id: jsxgraph
+    config: ./code-renderers/config/jsxgraph.yaml
