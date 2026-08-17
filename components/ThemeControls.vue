@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { Check, Palette, Type } from '@lucide/vue'
+import { Check, Palette, Pipette, Type } from '@lucide/vue'
 
 const appConfig = useAppConfig()
 const { accent, font, setAccent, setFont } = useThemePreferences()
+const presetAccentValues = new Set(appConfig.site.themeColors.map(item => item.value.toLowerCase()))
+const isCustomAccent = computed(() => !presetAccentValues.has(accent.value.toLowerCase()))
 </script>
 
 <template>
-  <section class="surface rounded-lg p-4" aria-label="主题设置">
+  <section class="surface rounded-lg p-4" role="dialog" aria-label="外观设置">
     <div class="mb-4 flex items-center gap-2 text-sm font-semibold">
       <Palette class="h-4 w-4 accent-text" />
       <span>主题色</span>
@@ -21,10 +23,20 @@ const { accent, font, setAccent, setFont } = useThemePreferences()
         :aria-label="`切换主题色 ${item.name}`"
         @click="setAccent(item.value)"
       >
-        <Check v-if="accent === item.value" class="h-4 w-4 text-white" />
+        <Check v-if="accent.toLowerCase() === item.value.toLowerCase()" class="h-4 w-4 text-white" />
       </button>
-      <label class="focus-within:ring-accent flex h-9 items-center rounded-full border border-line bg-panel px-2 focus-within:ring-2" aria-label="自定义主题色">
-        <input class="h-6 w-8 cursor-pointer border-0 bg-transparent p-0" type="color" :value="accent" @input="setAccent(($event.target as HTMLInputElement).value)">
+      <label
+        class="focus-ring relative grid h-9 w-9 cursor-pointer place-items-center overflow-hidden rounded-full border bg-panel text-muted transition hover:bg-panelMuted hover:text-ink focus-within:ring-2"
+        :class="isCustomAccent ? 'border-accent text-accent' : 'border-line'"
+      >
+        <Pipette class="pointer-events-none h-4 w-4" aria-hidden="true" />
+        <input
+          class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          type="color"
+          :value="accent"
+          :aria-label="isCustomAccent ? '选择自定义主题色，当前已使用自定义颜色' : '选择自定义主题色'"
+          @input="setAccent(($event.target as HTMLInputElement).value)"
+        >
       </label>
     </div>
 

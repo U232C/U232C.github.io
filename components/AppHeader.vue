@@ -1,13 +1,36 @@
 <script setup lang="ts">
-import { Menu, Moon, Search, Sun, X } from '@lucide/vue'
+import { Menu, Moon, Palette, Search, Sun, X } from '@lucide/vue'
 
 const appConfig = useAppConfig()
 const route = useRoute()
 const { mode, toggleMode } = useThemePreferences()
 const open = ref(false)
+const appearanceOpen = ref(false)
+const appearanceMenu = ref<HTMLElement | null>(null)
+const appearanceButton = ref<HTMLButtonElement | null>(null)
+
+const closeAppearance = (restoreFocus = false) => {
+  appearanceOpen.value = false
+  if (restoreFocus) {
+    nextTick(() => appearanceButton.value?.focus())
+  }
+}
+
+const toggleAppearance = () => {
+  appearanceOpen.value = !appearanceOpen.value
+  open.value = false
+}
+
+const toggleMenu = () => {
+  open.value = !open.value
+  appearanceOpen.value = false
+}
+
+onClickOutside(appearanceMenu, () => closeAppearance())
 
 watch(() => route.fullPath, () => {
   open.value = false
+  appearanceOpen.value = false
 })
 </script>
 
@@ -48,11 +71,31 @@ watch(() => route.fullPath, () => {
           <Sun v-if="mode === 'dark'" class="h-4 w-4" />
           <Moon v-else class="h-4 w-4" />
         </button>
+        <div ref="appearanceMenu" class="relative" @keydown.esc.stop="closeAppearance(true)">
+          <button
+            ref="appearanceButton"
+            class="focus-ring grid h-10 w-10 place-items-center rounded-control border border-line/70 bg-panel text-muted transition hover:text-ink"
+            :class="appearanceOpen ? 'border-accent text-accent' : ''"
+            type="button"
+            aria-label="打开外观设置"
+            aria-haspopup="dialog"
+            :aria-expanded="appearanceOpen"
+            aria-controls="appearance-panel"
+            @click="toggleAppearance"
+          >
+            <Palette class="h-4 w-4" />
+          </button>
+          <ThemeControls
+            v-if="appearanceOpen"
+            id="appearance-panel"
+            class="fixed left-4 right-4 top-[4.5rem] z-50 sm:absolute sm:left-auto sm:right-0 sm:top-12 sm:w-[min(20rem,calc(100vw-2rem))]"
+          />
+        </div>
         <button
           class="focus-ring grid h-10 w-10 place-items-center rounded-control border border-line/70 bg-panel text-muted md:hidden"
           type="button"
           :aria-label="open ? '关闭菜单' : '打开菜单'"
-          @click="open = !open"
+          @click="toggleMenu"
         >
           <X v-if="open" class="h-4 w-4" />
           <Menu v-else class="h-4 w-4" />

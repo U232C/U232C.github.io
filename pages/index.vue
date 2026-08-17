@@ -41,7 +41,6 @@ useSeoMeta({
       </div>
 
       <aside class="space-y-6">
-        <ThemeControls />
         <section class="surface rounded-lg p-4">
           <h2 class="text-lg font-bold tracking-normal">日记片段</h2>
           <div class="mt-4 grid gap-3">

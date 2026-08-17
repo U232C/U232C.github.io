@@ -59,12 +59,20 @@ useHead({
 
 <template>
   <div class="mx-auto max-w-5xl">
-    <header class="mb-8">
-      <p class="text-sm font-semibold uppercase tracking-[0.24em] accent-text">Archive</p>
-      <h1 class="mt-2 text-4xl font-black tracking-normal">文章时间线</h1>
-      <p class="mt-3 max-w-2xl text-muted">
-        所有文章按年份倒序排列，像翻一份有序的工程笔记。<span v-if="page > 1">当前为第 {{ page }} 页。</span>
-      </p>
+    <header class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.24em] accent-text">Archive</p>
+        <h1 class="mt-2 text-4xl font-black tracking-normal">文章时间线</h1>
+        <p class="mt-3 max-w-2xl text-muted">
+          所有文章按年份倒序排列，像翻一份有序的工程笔记。<span v-if="page > 1">当前为第 {{ page }} 页。</span>
+        </p>
+      </div>
+      <NuxtLink
+        to="/topics"
+        class="focus-ring shrink-0 self-start rounded-control border border-line bg-panel px-4 py-2.5 text-sm font-semibold transition hover:border-accent hover:bg-panelMuted hover:text-accent sm:self-auto"
+      >
+        浏览分类与标签
+      </NuxtLink>
     </header>
 
     <div class="space-y-10">

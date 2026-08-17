@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt dev --host 0.0.0.0",
+    "dev:https": "nuxt dev --host 0.0.0.0 --https.cert=.cert/local-dev-cert.pem --https.key=.cert/local-dev-key.pem",
+    "setup:https": "pwsh -NoProfile -File scripts/setup-local-https.ps1",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

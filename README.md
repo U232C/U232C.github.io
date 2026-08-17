@@ -66,6 +66,15 @@ pnpm dev
 
 开发服务器默认监听所有网络接口。终端会显示实际访问地址和端口。
 
+需要在浏览器或局域网设备中使用 HTTPS 时，先在 Windows 上生成并信任本地开发证书，再启动 HTTPS 服务：
+
+```bash
+pnpm setup:https
+pnpm dev:https
+```
+
+证书会覆盖 `localhost`、本机名称、回环地址和当前活动的局域网 IPv4，仅保存在被 Git 忽略的 `.cert/`。局域网 IP 变化后重新运行 `pnpm setup:https` 即可。
+
 ### 构建与预览
 
 ```bash
