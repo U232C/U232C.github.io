@@ -63,7 +63,7 @@ watch(() => route.fullPath, () => {
           <Search class="h-4 w-4" />
         </NuxtLink>
         <button
-          class="focus-ring grid h-10 w-10 place-items-center rounded-control border border-line/70 bg-panel text-muted transition hover:text-ink"
+          class="focus-ring grid h-10 w-10 place-items-center rounded-control border border-line/70 bg-panel text-ink transition hover:text-accent"
           type="button"
           :aria-label="mode === 'dark' ? '切换到亮色主题' : '切换到暗色主题'"
           @click="toggleMode"

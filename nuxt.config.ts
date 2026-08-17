@@ -10,6 +10,7 @@ import {
 import remarkCodeRenderers from './utils/remarkCodeRenderers'
 
 const siteUrl = 'https://u232c.github.io'
+const appBaseURL = process.env.NUXT_APP_BASE_URL || '/'
 const projectRoot = process.cwd()
 const rendererRegistry = parseCodeRendererRegistry(
   parse(readFileSync(resolve(projectRoot, 'code-renderers.yaml'), 'utf8'))
@@ -72,10 +73,11 @@ export default defineNuxtConfig({
     name: 'U232C Blog'
   },
   app: {
-    baseURL: process.env.NUXT_APP_BASE_URL || '/',
+    baseURL: appBaseURL,
     head: {
       htmlAttrs: { lang: 'zh-CN' },
       link: [
+        { rel: 'icon', type: 'image/svg+xml', href: `${appBaseURL}favicon.svg` },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

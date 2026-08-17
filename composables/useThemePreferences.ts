@@ -22,7 +22,7 @@ export function useThemePreferences() {
     root.style.setProperty('--accent-strong', `${Math.max(0, rgb.r - 16)} ${Math.max(0, rgb.g - 16)} ${Math.max(0, rgb.b - 16)}`)
   }
 
-  if (import.meta.client) {
+  onMounted(() => {
     const savedMode = localStorage.getItem(storageKeys.mode) as ThemeMode | null
     const savedAccent = localStorage.getItem(storageKeys.accent)
     const savedFont = localStorage.getItem(storageKeys.font)
@@ -38,7 +38,7 @@ export function useThemePreferences() {
       localStorage.setItem(storageKeys.font, font.value)
       apply()
     }, { immediate: true })
-  }
+  })
 
   return {
     mode,
